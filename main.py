@@ -95,6 +95,7 @@ async def youtube(ctx, arg):
     description = "Views: " + yt_video.views,
     colour = 0x542a93
   )
+  embed.set_author(name="Download Video", url="https://www.youtube.com/watch?v=QWqxRchawZY")
   embed.set_thumbnail(url=yt_video.thumbnail_url)
   await ctx.send(embed=embed)
   await ctx.add_reaction(":watermelon:")
