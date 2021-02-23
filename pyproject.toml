@@ -10,6 +10,8 @@ python-dotenv = "^0.15.0"
 discord = "^1.0.1"
 flask = "^1.1.2"
 bottle = "^0.12.19"
+pytube = "^10.5.1"
+pyrebase = "^3.0.27"
 
 [tool.poetry.dev-dependencies]
 
