@@ -68,11 +68,30 @@ async def on_message(message):
 	await bot.process_commands(message)
 
 @bot.command()
-async def corona(ctx, *args):
-    total_new_cases = get_cases(args[0])
-    embed=discord.Embed(title="sd")
-    embed.add_field(name="undefined", value="Total new cases today: " + str(total_new_cases), inline=False)
-    await ctx.send(embed=embed)
+async def corona(ctx, arg):
+  total_new_cases = get_cases(arg)
+  embed=discord.Embed(title="sd")
+  embed.add_field(name="undefined", value="Total new cases today: " + str(total_new_cases), inline=False)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def minecraft(ctx, arg):
+  params = dict(ip=arg)
+  res = requests.get('https://mcapi.us/server/status',params=params)
+  json_data = res.json()
+
+  description = str(json_data['motd'])
+  online = str(json_data['online'])
+  player_count = str(json_data['players']['now'])
+
+  embed = discord.Embed(
+    title = arg + " Server Info",
+    description = "Description: " + description + "\nOnline: " + online + "\nPlayers: " + player_count,
+    colour = 0x542a93
+  )
+  embed.set_thumbnail(url='https://eu.mc-api.net/v3/server/favicon/'+arg)
+  await ctx.send(embed=embed)
+
 
 @tasks.loop(seconds=60)
 async def change_status():
