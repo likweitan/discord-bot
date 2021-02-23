@@ -8,9 +8,9 @@ import requests
 from discord.ext import commands,tasks
 from dotenv import load_dotenv
 
-from itertools import cycle
+#from itertools import cycle
 
-import pyrebase
+#import pyrebase
 
 from pytube import YouTube
 
@@ -20,8 +20,8 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 CONFIG = os.getenv('CONFIG')
 
-firebase = pyrebase.initialize_app(CONFIG)
-storage = firebase.storage()
+#firebase = pyrebase.initialize_app(CONFIG)
+#storage = firebase.storage()
 
 bot = commands.Bot(command_prefix=".")
 
@@ -92,7 +92,7 @@ async def youtube(ctx, arg):
 
   embed = discord.Embed(
     title = yt_video.title,
-    description = "Views: " + yt_video.views,
+    description = "Views: " + str(yt_video.views),
     colour = 0x542a93
   )
   embed.set_author(name="Download Video", url="https://www.youtube.com/watch?v=QWqxRchawZY")
