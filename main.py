@@ -97,6 +97,7 @@ async def youtube(ctx, arg):
   )
   embed.set_thumbnail(url=yt_video.thumbnail_url)
   await ctx.send(embed=embed)
+  await ctx.add_reaction(":watermelon:")
 
 @bot.command()
 async def minecraft(ctx, arg):
