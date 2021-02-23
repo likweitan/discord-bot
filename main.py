@@ -10,14 +10,23 @@ from dotenv import load_dotenv
 
 from itertools import cycle
 
+import pyrebase
+
+from pytube import YouTube
+
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+CONFIG = os.getenv('CONFIG')
+
+firebase = pyrebase.initialize_app(CONFIG)
+storage = firebase.storage()
 
 bot = commands.Bot(command_prefix=".")
 
 text_channel_list = []
+
 for server in bot.guilds:
     print(server)
     for channel in server.channels:
@@ -72,6 +81,21 @@ async def corona(ctx, arg):
   total_new_cases = get_cases(arg)
   embed=discord.Embed(title="sd")
   embed.add_field(name="undefined", value="Total new cases today: " + str(total_new_cases), inline=False)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def youtube(ctx, arg):
+
+  link = arg
+  yt_video = YouTube(link)
+
+
+  embed = discord.Embed(
+    title = yt_video.title,
+    description = "Views: " + yt_video.views,
+    colour = 0x542a93
+  )
+  embed.set_thumbnail(url=yt_video.thumbnail_url)
   await ctx.send(embed=embed)
 
 @bot.command()
