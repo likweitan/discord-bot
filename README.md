@@ -1,5 +1,5 @@
 # Discord Bot
-## Made with (discord-py)[https://discordpy.readthedocs.io/]
+## Made with [discord-py](https://discordpy.readthedocs.io/)
 
 Discord Bot using discord-py
 
