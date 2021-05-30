@@ -1,5 +1,3 @@
-from keep_alive import keep_alive
-
 import discord
 import os
 
@@ -102,8 +100,4 @@ async def send_message(guild):
   await guild.text_channels[0].send("I have joined the server")
 """
 
-
-
-
-keep_alive()
 bot.run(TOKEN)
