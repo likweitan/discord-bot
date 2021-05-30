@@ -8,11 +8,6 @@ import requests
 from discord.ext import commands,tasks
 from dotenv import load_dotenv
 
-#from itertools import cycle
-
-import pyrebase
-
-from pytube import YouTube
 
 load_dotenv()
 
@@ -28,18 +23,6 @@ CONFIG = {
   "appId": os.getenv('appId'),
   "measurementId": os.getenv('measurementId'),
 }
-email = os.getenv('EMAIL')
-password = os.getenv('PASSWORD')
-
-firebase = pyrebase.initialize_app(CONFIG)
-
-# Get a reference to the auth service
-auth = firebase.auth()
-
-# Log the user in
-user = auth.sign_in_with_email_and_password(email, password)
-
-storage = firebase.storage()
 
 bot = commands.Bot(command_prefix=".")
 
@@ -99,31 +82,6 @@ async def corona(ctx, arg):
   total_new_cases = get_cases(arg)
   embed=discord.Embed(title="sd")
   embed.add_field(name="undefined", value="Total new cases today: " + str(total_new_cases), inline=False)
-  await ctx.send(embed=embed)
-
-@bot.command()
-async def youtube(ctx, arg):
-
-  link = arg
-
-
-  yt_video = YouTube(link)
-  stream = yt_video.streams.filter(adaptive=True).first()
-  path_local = stream.download()
-  print(path_local)
-  path_on_cloud = "downloads/" + yt_video.title + ".mp4"
-  #path_local = x
-  storage.child(path_on_cloud).put(path_local)
-  
-  download_url = storage.child(path_on_cloud).get_url(user['idToken'])
-  os.remove(path_local)
-  embed = discord.Embed(
-    title = yt_video.title,
-    description = "Views: " + str(yt_video.views),
-    colour = 0x542a93
-  )
-  embed.set_author(name="Download Video", url=download_url)
-  embed.set_thumbnail(url=yt_video.thumbnail_url)
   await ctx.send(embed=embed)
 
 @bot.command()
