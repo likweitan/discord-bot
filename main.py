@@ -11,6 +11,8 @@ from discord.ext import commands,tasks
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
+VIRUSTOTALKEY = os.getenv('VIRUSTOTALKEY')
+
 
 bot = commands.Bot(command_prefix=".")
 
