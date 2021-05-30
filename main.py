@@ -4,7 +4,7 @@ import os
 import requests
 import re
 from discord.ext import commands,tasks
-
+from better_profanity import profanity
 
 
 TOKEN = os.getenv('DISCORD_TOKEN')
