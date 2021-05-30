@@ -2,7 +2,7 @@ import discord
 import os
 
 import requests
-
+import re
 from discord.ext import commands,tasks
 
 
@@ -22,6 +22,14 @@ for server in bot.guilds:
         print(channel)
         if channel.type == 'Text':
             text_channel_list.append(channel)
+
+def find_url(string): 
+  
+    # findall() has been used  
+    # with valid conditions for urls in string 
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    url = re.findall(regex,string)       
+    return [x[0] for x in url] 
 
 def get_cases(country):
     res = requests.get("https://coronavirus-19-api.herokuapp.com/countries/" + country)
@@ -60,10 +68,30 @@ async def tracking(ctx, *args):
 
 @bot.event
 async def on_message(message):
-	if message.content.startswith('http'):
-		await message.channel.send("noob")
+  #if message.content.startswith('http'):
+  #  await message.channel.send("noob")
+  if profanity.contains_profanity(message.content):
+    await message.channel.send("No bad words please")
+  if "http" in message.content:
+    url = 'https://www.virustotal.com/vtapi/v2/url/report'
 
-	await bot.process_commands(message)
+    resource = find_url(message.content)
+
+    params = {'apikey': VIRUSTOTALKEY, 'resource': resource}
+
+    response = requests.get(url, params=params)
+
+    print(response.json())
+
+    print(response.json()['positives'])
+
+    if not response.json()['positives'] == 0:
+        await message.add_reaction("👎")
+    else:
+        await message.add_reaction("👍")
+    
+
+  await bot.process_commands(message)
 
 @bot.command()
 async def corona(ctx, arg):
