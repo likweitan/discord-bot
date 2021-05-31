@@ -13,9 +13,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 VIRUSTOTALKEY = os.getenv('VIRUSTOTALKEY')
 
-logging.basicConfig(level=logging.INFO)
 
-bot = commands.Bot(command_prefix=".")
+
+bot = commands.Bot(command_prefix='.', case_insensitive=True)#, owner_id=271612318947868673)
+logging.basicConfig(level=logging.INFO)
+bot.version = '1'
 
 text_channel_list = []
 
@@ -82,7 +84,7 @@ async def stats(ctx):
     embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
 
     await ctx.send(embed=embed)
-    
+
 @bot.command()
 async def tracking(ctx, *args):
 	response = ""
