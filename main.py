@@ -1,16 +1,19 @@
 import discord
-import os
+from discord.ext import commands,tasks
 
+import os
 import requests
 import re
-from discord.ext import commands,tasks
-from better_profanity import profanity
+import logging # For logging
+import platform # For stats
 
+from better_profanity import profanity
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 VIRUSTOTALKEY = os.getenv('VIRUSTOTALKEY')
 
+logging.basicConfig(level=logging.INFO)
 
 bot = commands.Bot(command_prefix=".")
 
@@ -46,7 +49,7 @@ def get_cases(country):
 async def on_ready():
   change_status.start()
   #send_message.start(bot.guilds)
-  print('Bot is ready')
+  print("-----\nLogged in as: {} : {}\n-----\nMy current prefix is: -\n-----".format(bot.user.name, bot.user.id))
   print(bot.guilds)
 
 @bot.command(
@@ -56,7 +59,30 @@ async def on_ready():
 async def ping(ctx):
 	await ctx.send('Pong! {0}'.format(round(bot.latency, 1)))
 
+@bot.command()
+async def stats(ctx):
+    """
+    A usefull command that displays bot statistics.
+    """
+    pythonVersion = platform.python_version()
+    dpyVersion = discord.__version__
+    serverCount = len(bot.guilds)
+    memberCount = len(set(bot.get_all_members()))
 
+    embed = discord.Embed(title=f'{bot.user.name} Stats', description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
+
+    embed.add_field(name='Bot Version:', value=bot.version)
+    embed.add_field(name='Python Version:', value=pythonVersion)
+    embed.add_field(name='Discord.Py Version', value=dpyVersion)
+    embed.add_field(name='Total Guilds:', value=serverCount)
+    embed.add_field(name='Total Users:', value=memberCount)
+    embed.add_field(name='Bot Developers:', value="<@271612318947868673>")
+
+    embed.set_footer(text=f"Carpe Noctem | {bot.user.name}")
+    embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
+
+    await ctx.send(embed=embed)
+    
 @bot.command()
 async def tracking(ctx, *args):
 	response = ""
