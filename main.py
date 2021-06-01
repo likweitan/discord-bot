@@ -83,7 +83,7 @@ async def stats(ctx):
 
     embed.set_footer(text=f"Requested By | {bot.user.name}")
     embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
-    embed.set_thumbnail(url='https://avatars.githubusercontent.com/u/11171910?v=4')
+    embed.set_thumbnail(url='https://avatars.githubusercontent.com/u/11171910')
     await ctx.send(embed=embed)
 
 @bot.command()
