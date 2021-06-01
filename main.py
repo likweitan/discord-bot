@@ -52,7 +52,7 @@ def get_cases(country):
 async def on_ready():
   change_status.start()
   #send_message.start(bot.guilds)
-  print("-----\nLogged in as: {} : {}\n-----\nMy current prefix is: -\n-----".format(bot.user.name, bot.user.id))
+  print("-----\nLogged in as: {} : {}\n-----\nMy current prefix is: .\n-----".format(bot.user.name, bot.user.id))
   print(bot.guilds)
 
 @bot.command(
@@ -79,9 +79,9 @@ async def stats(ctx):
     embed.add_field(name='Discord.Py Version', value=dpyVersion)
     embed.add_field(name='Total Guilds:', value=serverCount)
     embed.add_field(name='Total Users:', value=memberCount)
-    embed.add_field(name='Bot Developers:', value="<@271612318947868673>")
+    embed.add_field(name='Bot Developer:', value="https://github.com/likweitan/discord-bot")
 
-    embed.set_footer(text=f"Codes | {bot.user.name}")
+    embed.set_footer(text=f"Requested By | {bot.user.name}")
     embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
 
     await ctx.send(embed=embed)
@@ -101,6 +101,7 @@ async def on_message(message):
   #  await message.channel.send("noob")
   if profanity.contains_profanity(message.content):
     await message.channel.send("No bad words please")
+
   if "http" in message.content:
     url = 'https://www.virustotal.com/vtapi/v2/url/report'
 
