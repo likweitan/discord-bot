@@ -135,7 +135,7 @@ async def wiki(ctx, arg):
   try:
     answer = wikipedia.summary(arg, sentences=3)
   except wikipedia.exceptions.DisambiguationError as e:
-    answer = '"' + str(arg) + '" does not match any pages. Try another query!' + str(e.options)
+    answer = '"' + str(arg) + '" does not match any pages. Try another query!'
   embed=discord.Embed(title="Wikipedia")
   embed.add_field(name=arg, value=answer, inline=False)
   await ctx.send(embed=embed)
