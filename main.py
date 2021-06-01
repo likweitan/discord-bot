@@ -131,8 +131,8 @@ async def corona(ctx, arg):
 
 @bot.command()
 async def wiki(ctx, arg):
-  wikipedia.set_lang("fr")
-  answer = wikipedia.summary(arg)
+  wikipedia.set_lang("en")
+  answer = wikipedia.summary(arg, sentences=3)
   embed=discord.Embed(title="Wikipedia")
   embed.add_field(name=arg, value=answer, inline=False)
   await ctx.send(embed=embed)
