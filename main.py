@@ -101,8 +101,8 @@ async def on_message(message):
   #  await message.channel.send("noob")
 
   # Convert All String to Lowercase
-  message = message.lower()
-  
+  message = message.content.lower()
+
   if profanity.contains_profanity(message.content):
     await message.channel.send("No bad words please")
 
