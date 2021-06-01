@@ -99,6 +99,10 @@ async def tracking(ctx, *args):
 async def on_message(message):
   #if message.content.startswith('http'):
   #  await message.channel.send("noob")
+
+  # Convert All String to Lowercase
+  message = message.lower()
+  
   if profanity.contains_profanity(message.content):
     await message.channel.send("No bad words please")
 
