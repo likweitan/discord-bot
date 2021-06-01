@@ -7,6 +7,7 @@ import re
 import logging # For logging
 import platform # For stats
 
+import wikipedia
 from better_profanity import profanity
 
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -80,7 +81,7 @@ async def stats(ctx):
     embed.add_field(name='Total Users:', value=memberCount)
     embed.add_field(name='Bot Developers:', value="<@271612318947868673>")
 
-    embed.set_footer(text=f"Carpe Noctem | {bot.user.name}")
+    embed.set_footer(text=f"Codes | {bot.user.name}")
     embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
 
     await ctx.send(embed=embed)
@@ -126,6 +127,14 @@ async def corona(ctx, arg):
   total_new_cases = get_cases(arg)
   embed=discord.Embed(title="sd")
   embed.add_field(name="undefined", value="Total new cases today: " + str(total_new_cases), inline=False)
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def wiki(ctx, arg):
+  wikipedia.set_lang("fr")
+  answer = wikipedia.summary(arg)
+  embed=discord.Embed(title="Wikipedia")
+  embed.add_field(name=arg, value=answer, inline=False)
   await ctx.send(embed=embed)
 
 @bot.command()

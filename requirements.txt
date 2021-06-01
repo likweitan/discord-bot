@@ -1,6 +1,7 @@
 aiohttp==3.7.4.post0
 async-timeout==3.0.1
 attrs==21.2.0
+beautifulsoup4==4.9.3
 better-profanity==0.7.0
 certifi==2020.12.5
 chardet==4.0.0
@@ -27,7 +28,9 @@ requests==2.11.1
 requests-toolbelt==0.7.0
 rsa==4.7.2
 six==1.16.0
+soupsieve==2.2.1
 typing-extensions==3.10.0.0
 urllib3==1.26.5
 Werkzeug==2.0.1
+wikipedia==1.4.0
 yarl==1.6.3
