@@ -102,6 +102,9 @@ async def on_message(message):
   if profanity.contains_profanity(message.content):
     await message.channel.send("No bad words please")
 
+  if "codes" in message.content:
+    print('codes detected')
+
   if "http" in message.content:
     url = 'https://www.virustotal.com/vtapi/v2/url/report'
 
