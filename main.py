@@ -143,6 +143,30 @@ async def corona(ctx, arg):
   await ctx.send(embed=embed)
 
 @bot.command()
+async def profile(ctx, arg):
+  if arg == 'huanming':
+    name = 'Law Huan Ming'
+    age = '23'
+    height = '190cm'
+    weight = '60kg'
+    education = 'Bachelor Degree'
+    content = 'No smoking渣男'
+    profile_pic = 'https://i.ibb.co/DQ4dFQM/IMG-1812.jpg'
+    embed = discord.Embed(title=f"Huan Ming's Stats", description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
+
+    embed.add_field(name='Name:', value=name)
+    embed.add_field(name='Age:', value=age)
+    embed.add_field(name='Height:', value=height)
+    embed.add_field(name='Weight:', value=weight)
+    embed.add_field(name='Highest Education:', value=education)
+    embed.add_field(name='Basic Information:', value=content)
+
+    #embed.set_footer(text=f"Requested By | {bot.user.name}")
+    #embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
+    embed.set_thumbnail(url=profile_pic)
+    await ctx.send(embed=embed)
+
+@bot.command()
 async def wiki(ctx, arg):
   wikipedia.set_lang("en")
   try:
