@@ -131,6 +131,7 @@ async def on_message(message):
         await message.add_reaction("👎")
     else:
         await message.add_reaction("👍")
+    await message.channel.send(response.json()['permalink'])
     
 
   await bot.process_commands(message)
