@@ -136,6 +136,9 @@ async def on_message(message):
     else:
       embed.add_field(name='Safety', value='Clean')
       await message.add_reaction("👍")
+    embed.set_footer(text=f"Last scanned on { response.json()['scan_date'] }")
+    embed.set_author(name=bot.user.name, icon_url=bot.user.avatar_url)
+    #embed.set_thumbnail(url='https://avatars.githubusercontent.com/u/11171910')
     await message.channel.send(embed=embed)
     
 
