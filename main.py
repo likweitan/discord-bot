@@ -126,7 +126,8 @@ async def on_message(message):
     print(response.json())
 
     print(response.json()['positives'])
-    embed = discord.Embed(title=f"URL Stats", description='\uFEFF', timestamp=response.json()['scan_date'])
+    embed = discord.Embed(title=f"URL Stats", description='\uFEFF')
+    # , timestamp=response.json()['scan_date']
     embed.add_field(name='Message', value=response.json()['verbose_msg'])
     embed.add_field(name='Reference Link', value=response.json()['permalink'])
     if not response.json()['positives'] == 0:
