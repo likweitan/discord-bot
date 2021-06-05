@@ -115,6 +115,16 @@ async def on_message(message):
     print('codes detected')
 
   if "http" in message.content:
+    await message.channel.send("Scanning website...")
+
+    url = 'https://www.virustotal.com/vtapi/v2/url/scan'
+
+    params = {'apikey': VIRUSTOTALKEY, 'url':find_url(message.content)}
+
+    response = requests.post(url, data=params)
+
+    await message.channel.send("Website scanning is completed.")
+
     url = 'https://www.virustotal.com/vtapi/v2/url/report'
 
     resource = find_url(message.content)
@@ -141,6 +151,14 @@ async def on_message(message):
     #embed.set_thumbnail(url='https://avatars.githubusercontent.com/u/11171910')
     await message.channel.send(embed=embed)
     
+    # if message.attachments:
+    #   url = 'https://www.virustotal.com/vtapi/v2/file/scan'
+    #   params = {'apikey': VIRUSTOTALKEY}
+
+    #   files = {'file': ('myfile.exe', open('myfile.exe', 'rb'))}
+
+    #   response = requests.post(url, files=files, params=params)
+    #   message.attachments.url
 
   await bot.process_commands(message)
 
