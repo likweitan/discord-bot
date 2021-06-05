@@ -119,19 +119,21 @@ async def on_message(message):
 
     resource = find_url(message.content)
 
-    params = {'apikey': VIRUSTOTALKEY, 'resource': resource}
+    params = {'apikey': VIRUSTOTALKEY, 'resource': resource, 'scan': 1}
 
     response = requests.get(url, params=params)
 
     print(response.json())
 
     print(response.json()['positives'])
-
+    embed = discord.Embed(title=f"URL Stats", description='\uFEFF', timestamp=response.json()['scan_date'])
+    embed.add_field(name='Message', value=response.json()['verbose_msg'])
+    embed.add_field(name='Reference Link', value=response.json()['permalink'])
     if not response.json()['positives'] == 0:
         await message.add_reaction("👎")
     else:
         await message.add_reaction("👍")
-    await message.channel.send(response.json()['permalink'])
+    await message.channel.send(embed=embed)
     
 
   await bot.process_commands(message)
