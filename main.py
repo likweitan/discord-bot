@@ -153,7 +153,7 @@ async def profile(ctx, arg):
     education = 'Bachelor Degree'
     content = 'No smoking渣男'
     profile_pic = 'https://i.ibb.co/DQ4dFQM/IMG-1812.jpg'
-    embed = discord.Embed(title=f"Huan Ming's Stats", description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
+    embed = discord.Embed(title=f"{ ctx.author.discriminator } Stats", description='\uFEFF', colour=ctx.author.colour, timestamp=ctx.message.created_at)
 
     embed.add_field(name='Name:', value=name)
     embed.add_field(name='Age:', value=age)
