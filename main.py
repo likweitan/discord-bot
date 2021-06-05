@@ -130,7 +130,7 @@ async def on_message(message):
     # , timestamp=response.json()['scan_date']
     embed.add_field(name='Message', value=response.json()['verbose_msg'])
     embed.add_field(name='Reference Link', value=response.json()['permalink'])
-    if response.json()['positives'] / response.json()['total'] < 0.8:
+    if response.json()['positives'] / response.json()['total'] > 0.8:
       embed.add_field(name='Safety', value='Malicious')
       await message.add_reaction("👎")
     else:
