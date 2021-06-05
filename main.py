@@ -130,10 +130,12 @@ async def on_message(message):
     # , timestamp=response.json()['scan_date']
     embed.add_field(name='Message', value=response.json()['verbose_msg'])
     embed.add_field(name='Reference Link', value=response.json()['permalink'])
-    if not response.json()['positives'] == 0:
-        await message.add_reaction("👎")
+    if response.json()['positives'] / response.json()['total'] < 0.8:
+      embed.add_field(name='Safety', value='Malicious')
+      await message.add_reaction("👎")
     else:
-        await message.add_reaction("👍")
+      embed.add_field(name='Safety', value='Clean')
+      await message.add_reaction("👍")
     await message.channel.send(embed=embed)
     
 
