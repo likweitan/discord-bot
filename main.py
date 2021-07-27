@@ -106,24 +106,24 @@ async def on_message(message):
   if profanity.contains_profanity(message.content):
     await message.channel.send("No bad words please")
 
-  if "666" in message.content:
-    link = 'https://i.ibb.co/3TcDchn/151989716-1028957017511670-6087709147635236949-n.jpg'
-    print('666 detected')
-    await message.channel.send(link)
+  # if "666" in message.content:
+  #   link = 'https://i.ibb.co/3TcDchn/151989716-1028957017511670-6087709147635236949-n.jpg'
+  #   print('666 detected')
+  #   await message.channel.send(link)
 
   if "codes" in message.content:
     print('codes detected')
 
   if "http" in message.content:
-    await message.channel.send("Scanning website...")
+    # await message.channel.send("Scanning website...")
 
-    url = 'https://www.virustotal.com/vtapi/v2/url/scan'
+    # url = 'https://www.virustotal.com/vtapi/v2/url/scan'
 
-    params = {'apikey': VIRUSTOTALKEY, 'url':find_url(message.content)}
+    # params = {'apikey': VIRUSTOTALKEY, 'url':find_url(message.content)}
 
-    response = requests.post(url, data=params)
+    # response = requests.post(url, data=params)
 
-    await message.channel.send("Website scanning is completed.")
+    # await message.channel.send("Website scanning is completed.")
 
     url = 'https://www.virustotal.com/vtapi/v2/url/report'
 
