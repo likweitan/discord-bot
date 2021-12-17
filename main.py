@@ -57,6 +57,7 @@ async def on_ready():
     # send_message.start(bot.guilds)
     print("-----\nLogged in as: {} : {}\n-----\nMy current prefix is: .\n-----".format(bot.user.name, bot.user.id))
     print(bot.guilds)
+    await bot.send_message("811076931692658738 ", "I am back online :)")
 
 
 @bot.command(
