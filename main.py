@@ -95,11 +95,11 @@ async def stats(ctx):
 
 
 @bot.command()
-async def tracking(ctx, *args):
+async def tracking(ctx, arg):
     response = ""
-
-    for arg in args:
-        response = response + " " + arg
+    response = "Your tracking no. is " + arg
+    # for arg in args:
+    #     response = response + " " + arg
 
     await ctx.channel.send(response)
 
@@ -243,7 +243,7 @@ async def minecraft(ctx, arg):
 
 
 @tasks.loop(seconds=60)
-async def change_status():
+async def change_status():  # Change the status of the bot every minute
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(bot.guilds)} servers"))
 """
 @tasks.loop(seconds=60)
