@@ -120,8 +120,8 @@ async def on_message(message):
     # Convert All String to Lowercase
     #message = message.content.lower()
 
-    if profanity.contains_profanity(message.content):
-        await message.channel.send("No bad words please")
+    #if profanity.contains_profanity(message.content):
+    #    await message.channel.send("No bad words please")
 
     # if "666" in message.content:
     #   link = 'https://i.ibb.co/3TcDchn/151989716-1028957017511670-6087709147635236949-n.jpg'
